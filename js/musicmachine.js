@@ -1,6 +1,9 @@
 // Uses the audiosynth library to create an instrument
 // Other options include "piano", "acoustic", and "edm"
 const organ = Synth.createInstrument("organ");
+const piano = Synth.createInstrument("piano");
+const guitar = Synth.createInstrument("acoustic");
+const edm = Synth.createInstrument("edm");
 // Colors for the keys
 const allColors = ["#99CC00", "#0099FF", "#9933CC", "#CC0066", "#CC0033", "#FF3300", "#FF6600"];
 // Notes in the music scale
@@ -39,11 +42,11 @@ songBook[1][1] = [3,3,3,3,3,
                 3,3,3,3,3,3,
                 3,3,3,3,3,3,
                 3,3,3,3,3];
-songBook[1][2] = [2.5,2.5,2,1,2.5,
-                2,1,2,1,2.5,
-                1,1,1,1,1,1,
-                1,1,1,1,1,1,
-                2,1,2,1,2.5];
+songBook[1][2] = [1.5,1.5,1,.5,1.5,
+                1,.5,1,.5,1.5,
+                .5,.5,.5,.5,.5,.5,
+                .5,.5,.5,.5,.5,.5,
+                1,.5,1,.5,1.5];
 
 
 // Boolean for whether or not we're currently recording
