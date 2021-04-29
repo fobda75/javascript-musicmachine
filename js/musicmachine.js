@@ -158,13 +158,13 @@ function playRecordedNote(recordedNote) {
 function playRecording(arrayOfNotes) {
     // Loop over recorded notes, calling the anonymous
     // function for each element
-    arrayOfNotes.forEach(function (entry, index) {
+    arrayOfNotes[0].forEach(function (entry, index) {
         // Cause another anonymous function to run
         // with a set delay (in milliseconds)
         setTimeout(function () {
             // The entry will be a string from the array,
             // like "C,3"
-            playRecordedNote(arrayOfNotes[0],arrayOfNotes[1]);
+            playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index]);
         }, index * 500); // additional 500 MS delay for each note
     });
 
