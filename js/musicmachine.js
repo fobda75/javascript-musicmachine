@@ -164,7 +164,7 @@ function playRecording(arrayOfNotes) {
         if (arrayOfNotes[2][index] == 0)
             noteLength = .5;
         else // otherwise use the length of the note stored in the array
-            length = arrayOfNotes[2][index];
+             noteLength = arrayOfNotes[2][index];
         // Cause another anonymous function to run
         // with a set delay (in milliseconds)
         setTimeout(function () {
