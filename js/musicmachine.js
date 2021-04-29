@@ -9,7 +9,7 @@ const allNotes = ["C", "D", "E", "F", "G", "A", "B"];
 const MIN_OCTAVE = 3, MAX_OCTAVE = 5;
 //create an array to hold arrays of song notes
 let songBook = []
-songBook[0] = [new Array(),new Array(),new Array()];
+songBook[0] = [[],[],[]];
 songBook[0][0] = ["C","C","G","G","A","A","G",
                 "F","F","E","E","D","D","C",
                 "G","G","F","F","E","E","D",
@@ -28,7 +28,7 @@ songBook[0][2] = [1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
                     1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
                     1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
                     1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5];
-songBook[1] = [new Array(),new Array(),new Array()];
+songBook[1] = [[],[],[]];
 songBook[1][0] = ["C", "C", "C", "D", "E",
                     "E", "D", "E", "F", "G",
                     "C", "C", "C", "G", "G", "G",
@@ -102,8 +102,8 @@ $(document).ready(function () {
     $("#recordButton").click(toggleRecording);
     $("#clearButton").click(clearRecording);
     // add assignment of functions to play song buttons - mjs 4/28/21
-    $("#songOneButton").click(playSong[0]);
-    $("#songTwoButton").click(playSong[1]);
+    $("#songOneButton").click(playSong(songBook[0]));
+    $("#songTwoButton").click(playSong(songBook[1]));
 
 });
 
