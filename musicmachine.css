@@ -24,6 +24,13 @@ p {
     font-size: x-large;
 }
 
+#instrumentSelect {
+    text-align: center;
+    font-family: 'Modak', cursive;
+    font-size: 80px;
+
+}
+
 .container {
     background-color: rgba(240, 240, 255, 0.8);
     border-radius: 20px;
