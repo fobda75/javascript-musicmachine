@@ -179,7 +179,7 @@ function playRecording(arrayOfNotes) {
             // The entry will be a string from the array,
             // like "C,3"
             playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index],noteLength);
-        }, index * 500); // additional 500 MS delay for each note
+        }, index *(noteLength*1000)); //index * 500); // additional 500 MS delay for each note
     });
 
     // After all the recorded notes have played, clear the span
