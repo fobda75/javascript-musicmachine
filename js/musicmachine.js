@@ -212,12 +212,12 @@ function keyClicked() {
 function playNote(note, octave, noteLength) {
     // use the instrument from the audiosynth library
     // to play the desired note for {length} number of seconds
-    if ($("#selectOrgan").checked)
+    if ($("#selectOrgan").prop("checked"))
         organ.play(note, octave, noteLength);
-    if ($("#selectPiano").checked)
+    if ($("#selectPiano").prop("checked"))
         piano.play(note, octave, noteLength);
-    if ($("#selectGuitar").checked)
+    if ($("#selectGuitar").prop("checked"))
         guitar.play(note, octave, noteLength);
-    if ($("#selectEdm").checked)
+    if ($("#selectEdm").prop("checked"))
         edm.play(note, octave, noteLength);
 }
