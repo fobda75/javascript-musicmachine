@@ -94,18 +94,21 @@ $(document).ready(function () {
 
     // This anonymous function makes the Play Recording
     // button play the array of recorded notes
-    //$("#playButton").click(function () {
-    //    playRecording(recordedNotes);
-    //});
-    $("#playButton").click(playRecording(recordedNotes));
+    $("#playButton").click(function () {
+        playRecording(recordedNotes);
+    });
 
 
     // Assign functions to the other buttons
     $("#recordButton").click(toggleRecording);
     $("#clearButton").click(clearRecording);
     // add assignment of functions to play song buttons - mjs 4/28/21
-    $("#songOneButton").click(playRecording(songBook[0]));
-    $("#songTwoButton").click(playRecording(songBook[1]));
+    $("#songOneButton").click(function () {
+        playRecording(songBook[0]);
+    });
+    $("#songTwoButton").click(function () {
+        playRecording(songBook[1]);
+    });
 
 });
 
