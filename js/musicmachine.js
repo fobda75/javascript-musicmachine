@@ -50,7 +50,7 @@ songBook[1][2] = [2.5,2.5,2,1,2.5,
 let isRecording = false;
 
 // Empty array to record a song as the user clicks notes
-let recordedNotes = [[],[]];
+let recordedNotes = [[],[],[]];
 
 $(document).ready(function () {
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
 function clearRecording() {
     // create a new, empty array
-    recordedNotes = [[],[]];
+    recordedNotes = [[],[],[]];
 }
 
 function toggleRecording() {
