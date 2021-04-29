@@ -135,13 +135,13 @@ function recordNote(note, octave) {
     recordedNotes[1].push(octave);
 }
 
-function playRecordedNote(recordedNote) {
+function playRecordedNote(note, octave) {
     // recordedNote will contain a string like "C,3"
     // Split the string into an array where index 0
     // holds the note, and index 1 holds the octave
     //let pieces = recordedNote.split(",");
-    let note = recordedNote[0]; // "C"
-    let octave = recordedNote[1]; // "3"
+    //let note = recordedNote[0]; // "C"
+    //let octave = recordedNote[1]; // "3"
     // Put the note and octave on the screen
     $("#keyPlaying").text(note + octave);
     // Find all keys and remove the class that gives
