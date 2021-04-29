@@ -4,6 +4,7 @@ const organ = Synth.createInstrument("organ");
 const piano = Synth.createInstrument("piano");
 const guitar = Synth.createInstrument("acoustic");
 const edm = Synth.createInstrument("edm");
+
 // Colors for the keys
 const allColors = ["#99CC00", "#0099FF", "#9933CC", "#CC0066", "#CC0033", "#FF3300", "#FF6600"];
 // Notes in the music scale
@@ -105,6 +106,7 @@ $(document).ready(function () {
     // Assign functions to the other buttons
     $("#recordButton").click(toggleRecording);
     $("#clearButton").click(clearRecording);
+    $("#s")
     // add assignment of functions to play song buttons - mjs 4/28/21
     $("#songOneButton").click(function () {
         playRecording(songBook[0]);
@@ -210,5 +212,12 @@ function keyClicked() {
 function playNote(note, octave, noteLength) {
     // use the instrument from the audiosynth library
     // to play the desired note for {length} number of seconds
-    organ.play(note, octave, noteLength);
+    if ($("#selectOrgan").checked)
+        organ.play(note, octave, noteLength);
+    if ($("#selectPiano").checked)
+        piano.play(note, octave, noteLength);
+    if ($("#selectGuitar").checked)
+        guitar.play(note, octave, noteLength);
+    if ($("#selectEdm").checked)
+        edm.play(note, octave, noteLength);
 }
