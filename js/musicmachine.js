@@ -94,9 +94,11 @@ $(document).ready(function () {
 
     // This anonymous function makes the Play Recording
     // button play the array of recorded notes
-    $("#playButton").click(function () {
-        playRecording(recordedNotes);
-    });
+    //$("#playButton").click(function () {
+    //    playRecording(recordedNotes);
+    //});
+    $("#playButton").click(playRecording(recordedNotes));
+
 
     // Assign functions to the other buttons
     $("#recordButton").click(toggleRecording);
