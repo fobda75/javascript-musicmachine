@@ -135,7 +135,7 @@ function recordNote(note, octave) {
     recordedNotes[1].push(octave);
 }
 
-function playRecordedNote(note, octave, length) {
+function playRecordedNote(note, octave, noteLength) {
     // recordedNote will contain a string like "C,3"
     // Split the string into an array where index 0
     // holds the note, and index 1 holds the octave
@@ -152,17 +152,17 @@ function playRecordedNote(note, octave, length) {
         .filter(`#${note}${octave}`)
         .addClass("playing");
     // Play the recorded note
-    playNote(note, octave);
+    playNote(note, octave, noteLength);
 }
 
 function playRecording(arrayOfNotes) {
     // Loop over recorded notes, calling the anonymous
     // function for each element
-    let length = 0
+    let noteLength = 0
     arrayOfNotes[0].forEach(function (entry, index) {
         //if the array does not include lengths to play notes (recorded notes) set length to .5
         if (arrayOfNotes[2][index] == 0)
-            length = .5;
+            noteLength = .5;
         else // otherwise use the length of the note stored in the array
             length = arrayOfNotes[2][index];
         // Cause another anonymous function to run
@@ -170,7 +170,7 @@ function playRecording(arrayOfNotes) {
         setTimeout(function () {
             // The entry will be a string from the array,
             // like "C,3"
-            playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index],length);
+            playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index],noteLength);
         }, index * 500); // additional 500 MS delay for each note
     });
 
@@ -199,8 +199,8 @@ function keyClicked() {
         recordNote(notePlayed, octavePlayed);
 }
 
-function playNote(note, octave, length) {
+function playNote(note, octave, noteLength) {
     // use the instrument from the audiosynth library
     // to play the desired note for {length} number of seconds
-    organ.play(note, octave, length);
+    organ.play(note, octave, noteLength);
 }
