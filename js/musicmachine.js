@@ -7,12 +7,49 @@ const allColors = ["#99CC00", "#0099FF", "#9933CC", "#CC0066", "#CC0033", "#FF33
 const allNotes = ["C", "D", "E", "F", "G", "A", "B"];
 // Make keys for these octaves
 const MIN_OCTAVE = 3, MAX_OCTAVE = 5;
+//create an array to hold arrays of song notes
+let songBook = []
+songBook[0] = [new Array(),new Array(),new Array()];
+songBook[0][0] = ["C","C","G","G","A","A","G",
+                "F","F","E","E","D","D","C",
+                "G","G","F","F","E","E","D",
+                "G","G","F","F","E","E","D",
+                "C","C","G","G","A","A","G",
+                "F","F","E","E","D","D","C"];
+songBook[0][1] = [4,4,4,4,4,4,4,
+                  4,4,4,4,4,4,4,
+                  4,4,4,4,4,4,4,
+                  4,4,4,4,4,4,4,
+                  4,4,4,4,4,4,4,
+                  4,4,4,4,4,4,4];
+songBook[0][2] = [1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
+                    1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
+                    1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
+                    1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
+                    1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5,
+                    1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 5];
+songBook[1][0] = ["C", "C", "C", "D", "E",
+                    "E", "D", "E", "F", "G",
+                    "C", "C", "C", "G", "G", "G",
+                    "E", "E", "E", "C", "C", "C",
+                    "G", "F", "E", "D", "C"];
+songBook[1][1] = [3,3,3,3,3,
+                3,3,3,3,3,
+                3,3,3,3,3,3,
+                3,3,3,3,3,3,
+                3,3,3,3,3];
+songBook[1][2] = [2.5,2.5,2,1,2.5,
+                2,1,2,1,2.5,
+                1,1,1,1,1,1,
+                1,1,1,1,1,1,
+                2,1,2,1,2.5];
+
 
 // Boolean for whether or not we're currently recording
 let isRecording = false;
 
 // Empty array to record a song as the user clicks notes
-let recordedNotes = [];
+let recordedNotes = [[],[]];
 
 $(document).ready(function () {
 
@@ -63,12 +100,15 @@ $(document).ready(function () {
     // Assign functions to the other buttons
     $("#recordButton").click(toggleRecording);
     $("#clearButton").click(clearRecording);
+    // add assignment of functions to play song buttons - mjs 4/28/21
+    $("#songOneButton").click(playSong[0]);
+    $("#songTwoButton").click(playSong[1]);
 
 });
 
 function clearRecording() {
     // create a new, empty array
-    recordedNotes = [];
+    recordedNotes = [[],[]];
 }
 
 function toggleRecording() {
@@ -88,18 +128,19 @@ function toggleRecording() {
 
 function recordNote(note, octave) {
     // Make a string like "C,3"
-    let entry = note + "," + octave;
+
     // Store the note information in the array
-    recordedNotes.push(entry);
+    recordedNotes[0].push(note);
+    recordedNotes[1].push(octave);
 }
 
 function playRecordedNote(recordedNote) {
     // recordedNote will contain a string like "C,3"
     // Split the string into an array where index 0
     // holds the note, and index 1 holds the octave
-    let pieces = recordedNote.split(",");
-    let note = pieces[0]; // "C"
-    let octave = pieces[1]; // "3"
+    //let pieces = recordedNote.split(",");
+    let note = recordedNote[0]; // "C"
+    let octave = recordedNote[1]; // "3"
     // Put the note and octave on the screen
     $("#keyPlaying").text(note + octave);
     // Find all keys and remove the class that gives
@@ -122,7 +163,7 @@ function playRecording(arrayOfNotes) {
         setTimeout(function () {
             // The entry will be a string from the array,
             // like "C,3"
-            playRecordedNote(entry);
+            playRecordedNote(arrayOfNotes[0],arrayOfNotes[1]);
         }, index * 500); // additional 500 MS delay for each note
     });
 
@@ -144,15 +185,19 @@ function keyClicked() {
     let octavePlayed = keyPlayed.data("octave");
 
     // Make the sound play
-    playNote(notePlayed, octavePlayed);
+    playNote(notePlayed, octavePlayed,.5);
 
     // If recording is turned on, record the note info
     if (isRecording)
         recordNote(notePlayed, octavePlayed);
 }
 
-function playNote(note, octave) {
+function playNote(note, octave, length) {
     // use the instrument from the audiosynth library
-    // to play the desired note for half a second
-    organ.play(note, octave, 0.5);
+    // to play the desired note for {length} number of seconds
+    organ.play(note, octave, length);
+}
+
+function playSong(songArray){
+
 }
