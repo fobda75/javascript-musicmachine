@@ -102,8 +102,8 @@ $(document).ready(function () {
     $("#recordButton").click(toggleRecording);
     $("#clearButton").click(clearRecording);
     // add assignment of functions to play song buttons - mjs 4/28/21
-    $("#songOneButton").click(playSong(songBook[0]));
-    $("#songTwoButton").click(playSong(songBook[1]));
+    $("#songOneButton").click(playRecording(songBook[0]));
+    $("#songTwoButton").click(playRecording(songBook[1]));
 
 });
 
@@ -135,7 +135,7 @@ function recordNote(note, octave) {
     recordedNotes[1].push(octave);
 }
 
-function playRecordedNote(note, octave) {
+function playRecordedNote(note, octave, length) {
     // recordedNote will contain a string like "C,3"
     // Split the string into an array where index 0
     // holds the note, and index 1 holds the octave
@@ -158,13 +158,19 @@ function playRecordedNote(note, octave) {
 function playRecording(arrayOfNotes) {
     // Loop over recorded notes, calling the anonymous
     // function for each element
+    let length = 0
     arrayOfNotes[0].forEach(function (entry, index) {
+        //if the array does not include lengths to play notes (recorded notes) set length to .5
+        if (arrayOfNotes[2][index] == 0)
+            length = .5;
+        else // otherwise use the length of the note stored in the array
+            length = arrayOfNotes[2][index];
         // Cause another anonymous function to run
         // with a set delay (in milliseconds)
         setTimeout(function () {
             // The entry will be a string from the array,
             // like "C,3"
-            playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index]);
+            playRecordedNote(arrayOfNotes[0][index],arrayOfNotes[1][index],length);
         }, index * 500); // additional 500 MS delay for each note
     });
 
@@ -197,8 +203,4 @@ function playNote(note, octave, length) {
     // use the instrument from the audiosynth library
     // to play the desired note for {length} number of seconds
     organ.play(note, octave, length);
-}
-
-function playSong(songArray){
-
 }
